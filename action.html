@@ -1,0 +1,130 @@
+<!-- 
+/*************************************************
+2011 Sergey Lubenin web_lab@mail.ru
+*************************************************/
+ -->
+<script type="text/javascript" src="j.js"></script>
+<script type="text/javascript">
+
+function addToStorage(){
+	var uy = document.getElementById('kick_him').value;
+	
+	if ( !in_array(uy,(lst||' ').split('=#####=')) && uy!="" ){
+		
+		var t =(lst=="" ? '':lst+'=#####=')+uy;
+			lst = t;
+			chrome.extension.sendRequest({localstorage: "set",settedValue:lst},function(response){document.location.reload()});
+	
+		} else {
+			
+			alert('Эта чучундра уже в списке!');
+			
+			}
+
+}
+
+var lst = "";
+
+var z = "";
+
+	function show_kicked(zz){
+		
+			for(var t=0,x=zz.length;t<x;t++){
+				if(zz[t]!="") 
+				$("#tq").append("<tr id='tr"+t+"'><td>"+zz[t]+"</td><td><button class='delitem' id=\"b"+t+"\">x</button></td></tr>");
+			}
+		$("button.delitem").click(function(){
+			zz.splice($(this).attr("id").replace(/^b/gim,''),1);
+			chrome.extension.sendRequest({localstorage: 'set',settedValue:zz.join('=#####=')},function(response){document.location.reload()});
+		});
+		
+	}
+
+//Вывод опций
+	function showOptions (option, description) {
+	  var opt = localStorage[option];
+	  if (!opt || opt == "false") {
+	    $("body").append('<tr><td><input class="options" type="checkbox" name='+option+' /></td><td>'+description+'</td></tr>');
+	  }
+      else {
+	    $("body").append('<tr><td><input class="options" type="checkbox" name='+option+' checked="checked" /></td><td>'+description+'</td></tr>');
+      }
+	};
+
+//Обработка чекбоксов
+	function setOption(){
+	  var checkBoxName = $(this).attr("name");
+	  if ($(this).is(":checked")) { 
+	    localStorage[checkBoxName]=true;
+	  }
+	  else {
+	    localStorage[checkBoxName]=false;
+	  }
+	};
+
+//Вывод форумов
+    function showBranches (branches) {
+      if (localStorage["branches"] == undefined || localStorage["branches"] =="") {
+        for(var key in branches) {
+          $("body").append('<tr><td><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" /></td><td>'+branches[key]+'</td></tr>');
+        }
+      }
+      else {
+        var brn = localStorage["branches"].split('###');
+        for(var key in branches) {
+          if (in_array(branches[key], brn)) {
+            $("body").append('<tr><td><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" checked="checked" /></td><td>'+branches[key]+'</td></tr>');
+          }
+          else {
+            $("body").append('<tr><td><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" /></td><td>'+branches[key]+'</td></tr>');           
+          }
+        }
+      }
+    };
+
+//Обработка форумов
+	function setBranches(){
+      if (localStorage["branches"] != undefined) {
+        var brn = localStorage["branches"].split('###');
+      }
+	  var checkBoxName = $(this).attr("title");
+	  if ($(this).is(":checked")) {
+	    if (localStorage["branches"] == undefined || localStorage["branches"] =="") {
+	      localStorage["branches"]=checkBoxName;
+	    }
+	    else if (!in_array(checkBoxName, brn)) {
+	      brn.push(checkBoxName);
+        }
+	  }
+	  else {
+	    brn = jQuery.grep(brn, function(value) 
+	      {return value != checkBoxName;}
+	    );
+	  }
+	  localStorage["branches"]=brn.join('###');
+	};
+		
+	chrome.extension.sendRequest({localstorage: "kicked"}, function(response){ 
+		
+		$("body").append('<div>Амёбы:<hr /><table id="tq" cellpadding="0" cellspacing="0" border="0"><tr><td><input type="text" id="kick_him" onkeypress="if(event.keyCode==13)addToStorage()" /></td><td><button style="width:120px" onclick="addToStorage()">Амёба, блеать!</button></td></tr>');
+		lst = response.kicked;
+		z = response.kicked.split('=#####=');
+		show_kicked(z);
+		$("body").append('</table></div>');
+		$("#tq td").css({'padding':'3px','textAlign':'right'});
+		$("#tq tr:odd").css({'background':'#EEE'});
+		$("#tq tr:odd").mouseover(function(){$(this).css({'background':'#EED'});}).mouseout(function(){$(this).css({'background':'#EEE'});});
+		$("#tq tr:even").mouseover(function(){$(this).css({'background':'#EFE'});}).mouseout(function(){$(this).css({'background':'#FFF'});});
+
+	});
+ $(document).ready(function(){
+        var branches = ["общие","костромские","областные","деловые","творческие","хобби","околокомпьютерные","тестовые","Информация о форуме"];
+        showOptions("headerButtons","Отключить тупые кнопки в шапке");
+		showOptions("goToForm","Отключить хрень для перехода");
+		showOptions("footer","Отключить футер");
+        $("body").append('<hr />');
+		showBranches(branches);
+		$(".options").click(setOption);
+        $(".branches").click(setBranches); 
+		});
+</script>
