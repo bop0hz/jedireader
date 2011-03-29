@@ -1,6 +1,6 @@
 {
  "name": "Jedi Filter (alt-edition)", 
- "version": "1.0.3", 
+ "version": "1.0.4", 
  "description": "Я их не перевариваю:...",
  "background_page":"bg.html", 
  "content_scripts": [
@@ -10,15 +10,14 @@
     }
   ],
  "permissions": [
-  "tabs", 
-  "http://jedi.net.ru/*",
-  "http://www.jedi.net.ru/*"  
+    "tabs", 
+    "http://jedi.net.ru/*",
+    "http://www.jedi.net.ru/*"  
  ],
 
  "browser_action": { 
-  "default_title": "Jedi advanced reader", 
-  "default_icon": "icon.ico",
-  "popup": "action.html" 
+   "default_title": "Jedi advanced reader", 
+   "default_icon": "icon.ico",
+   "popup": "action.html" 
  }
-
 }
