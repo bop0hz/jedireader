@@ -3,8 +3,8 @@
 *************************************************/
 var current_pretendent = "";
 var vhosts = [
-				[/(http\:\/\/)?(www\.)?youtube\.(com|ru)\/watch\?v\=/gim , "<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/{{here}}\" frameborder=\"0\" allowfullscreen></iframe>"]
-				
+				[/((http\:\/\/)?(www\.)?youtube\.(com|ru)\/watch\?v\=)([a-zA-Z0-9\-]+)(\&.*)?$/gim , "<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/$5\" frameborder=\"0\" allowfullscreen></iframe>"],
+				[/((http\:\/\/)?(www\.)?rutube\.ru\/tracks\/\d+\.html\?v\=)(.*)(\&.*$)?/gim , "<OBJECT width=\"470\" height=\"353\"><PARAM name=\"movie\" value=\"http://video.rutube.ru/$4\"></PARAM><PARAM name=\"wmode\" value=\"window\"></PARAM><PARAM name=\"allowFullScreen\" value=\"true\"></PARAM><EMBED src=\"http://video.rutube.ru/$4\" type=\"application/x-shockwave-flash\" wmode=\"window\" width=\"470\" height=\"353\" allowFullScreen=\"true\" ></EMBED></OBJECT>"],				
 			 ];
 
 $(document).ready(function(){
@@ -23,15 +23,15 @@ $(document).ready(function(){
 	$(".postmsg a").each(function(){
 	
 		
-		var msg = $(this).attr("href").replace(/\&.*$/gim,'');
+		var msg = $(this).attr("href");
 		
 		for(var i=0,j=vhosts.length;i<j;i++) {
 			
 			if(vhosts[i][0].test(msg)){
 		
-			msg = msg.replace(vhosts[i][0],vhosts[i][1].split('{{here}}')[0]);
+			msg = msg.replace(vhosts[i][0],vhosts[i][1]);
 			
-			$(this).replaceWith(msg+vhosts[i][1].split('{{here}}')[1]);
+			$(this).replaceWith(msg);
 			
 			}
 			
