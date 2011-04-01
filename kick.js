@@ -3,9 +3,15 @@
 *************************************************/
 var current_pretendent = "";
 var vhosts = [
-[/((http\:\/\/)?(www\.)?youtube\.(com|ru)\/watch\?v\=)([a-zA-Z0-9\-]+)(\&.*)?$/gim , "<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/$5\" frameborder=\"0\" allowfullscreen></iframe>"],
-[/((http\:\/\/)?(www\.)?rutube\.ru\/tracks\/\d+\.html\?v\=)(.*)(\&.*$)?/gim , "<OBJECT width=\"470\" height=\"353\"><PARAM name=\"movie\" value=\"http://video.rutube.ru/$4\"></PARAM><PARAM name=\"wmode\" value=\"window\"></PARAM><PARAM name=\"allowFullScreen\" value=\"true\"></PARAM><EMBED src=\"http://video.rutube.ru/$4\" type=\"application/x-shockwave-flash\" wmode=\"window\" width=\"470\" height=\"353\" allowFullScreen=\"true\" ></EMBED></OBJECT>"],				
-			 ];
+[
+/((http\:\/\/)?(www\.)?youtube\.(com|ru)\/watch\?v\=)([a-zA-Z0-9\-]+)(\&.*)?$/gim , 
+"<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/$5\" frameborder=\"0\" allowfullscreen></iframe>"
+],
+[
+/((http\:\/\/)?(www\.)?rutube\.ru\/tracks\/\d+\.html\?v\=)(.*)(\&.*$)?/gim , 
+"<OBJECT width=\"470\" height=\"353\"><PARAM name=\"movie\" value=\"http://video.rutube.ru/$4\"></PARAM><PARAM name=\"wmode\" value=\"window\"></PARAM><PARAM name=\"allowFullScreen\" value=\"true\"></PARAM><EMBED src=\"http://video.rutube.ru/$4\" type=\"application/x-shockwave-flash\" wmode=\"window\" width=\"470\" height=\"353\" allowFullScreen=\"true\" ></EMBED></OBJECT>"
+]				
+                 ];
 
 $(document).ready(function(){
 	
