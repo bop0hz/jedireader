@@ -46,33 +46,33 @@ $(document).ready(function(){
 
 
 //удаление дебильных иконок
-    chrome.extension.sendRequest({localstorage: "headerButtons"}, function(response){
-      if (response["headerButtons"] == "true") 
-        $("#brdmenu ~ .inbox:first").remove();
-    });
+	chrome.extension.sendRequest({localstorage: "headerButtons"}, function(response){
+		if (response["headerButtons"] == "true") 
+		$("#brdmenu ~ .inbox:first").remove();
+	});
 
 //удаление блока Перехода
-    chrome.extension.sendRequest({localstorage: "goToForm"}, function(response){
-      if (response["goToForm"] == "true") 
-        $("#brdfooter").remove();
-    });    
+	chrome.extension.sendRequest({localstorage: "goToForm"}, function(response){
+		if (response["goToForm"] == "true") 
+		document.getElementById("brdfooter").style.display ="none";
+	});	
 
 //удаление футера
-    chrome.extension.sendRequest({localstorage: "footer"}, function(response){
-      if (response["footer"] == "true") {
-        $("#punindex > .box").remove();
-        $("#punviewforum > .box").remove();
-        $("#punviewtopic > .box").remove();
-      };
-    });
-    
+	chrome.extension.sendRequest({localstorage: "footer"}, function(response){
+		if (response["footer"] == "true") {
+			$("#punindex").children(".box").remove();
+			$("#punviewforum").children(".box").remove();
+			$("#punviewtopic").children(".box").remove();
+		};
+	});
+	
 //удаление веток			
-    chrome.extension.sendRequest({localstorage: "branches"}, function(response){
-	  var kickedBranches = response["branches"].split('###');
-      $("h2 > span").each(function(){
-        if (in_array($(this).text(),kickedBranches)) $(this).parents(".blocktable,.block").remove();
-      });
-    });
+	chrome.extension.sendRequest({localstorage: "branches"}, function(response){
+		var kickedBranches = response["branches"].split('###');
+		$("h2").children("span").each(function(){
+			if (in_array($(this).text(),kickedBranches)) $(this).parents(".blocktable,.block").remove();
+		});
+	});
 
 	chrome.extension.sendRequest({localstorage: "kicked"}, function(response) { 
 		
@@ -99,7 +99,7 @@ $(document).ready(function(){
 			
 			alert('Эта чучундра уже в списке!');
 			
-			}
+		}
 
 	});
 	
@@ -142,7 +142,7 @@ $(document).ready(function(){
 					ob.hide("fast"); 
 					
 			});		
-		//if (in_array(text,st)  && text!="")
+		//if (in_array(text,st)	&& text!="")
 		
 		return false});
 		
@@ -150,7 +150,7 @@ $(document).ready(function(){
 				
 				var text = $(this).text()||"";
 				
-				if (in_array(text,st)  && text!="") {
+				if (in_array(text,st)	&& text!="") {
 					$(this)
 					.parents("div.blockpost")
 					.children("h2")
@@ -210,7 +210,3 @@ $(document).ready(function(){
 			
 	
 	});
-	
-	
-	
-
