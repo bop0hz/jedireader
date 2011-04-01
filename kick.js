@@ -66,9 +66,7 @@ $(document).ready(function(){
 //удаление футера
 	chrome.extension.sendRequest({localstorage: "footer"}, function(response){
 		if (response["footer"] == "true") {
-			$("#punindex").children(".box").remove();
-			$("#punviewforum").children(".box").remove();
-			$("#punviewtopic").children(".box").remove();
+			$("#punindex, #punviewforum, #punviewtopic").children(".box").remove();
 		};
 	});
 	
