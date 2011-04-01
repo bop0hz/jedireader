@@ -5,99 +5,99 @@
  -->
 <!DOCTYPE html>
 <html>
-  <head>
+	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script type="text/javascript" src="j.js"></script>
 	<style>
 	* {
-	  font-family: Verdana, Helvetica, sans-serif;
-	  margin: 0;
-	  padding: 0;
+		font-family: Verdana, Helvetica, sans-serif;
+		margin: 0;
+		padding: 0;
 	}
 	
 	html, body {
-	  width: 270px;
+		width: 270px;
 	}
 
 	button {
-	  background-color: #fff;
-	  border: 1px solid #a6cace;
-	  border-radius: 3px;
-	  padding: 0.3em;
-	  text-shadow: 1px 1px 0px;
-	  width: 100px;
+		background-color: #fff;
+		border: 1px solid #a6cace;
+		border-radius: 3px;
+		padding: 0.3em;
+		text-shadow: 1px 1px 0px;
+		width: 100px;
 	}
 
 	button:hover, .list:hover { 
-	  background-color: #5a9ca3;
-	  border: 1px solid #5a9ca3;
-	  color: #fff;
-	  cursor: pointer;
-	  text-shadow: 1px 1px 0px #000;
+		background-color: #5a9ca3;
+		border: 1px solid #5a9ca3;
+		color: #fff;
+		cursor: pointer;
+		text-shadow: 1px 1px 0px #000;
 	}
 
 	button:active, button:focus { }
 
 	.section{
-	  float: left;
-	  padding: 5px;
-	  text-align: right;
-	  width: 100px;
+		float: left;
+		padding: 5px;
+		text-align: right;
+		width: 100px;
 	}
 
 	.description{
-	  background-color:#a6cace;
-	  color: #fff;
-	  font-size: 1.2em;
-	  float: left;
-	  padding: 5px;
-	  text-shadow: #000 0 0 4px;
-	  text-align: left;
-	  width: 100%;
+		background-color:#a6cace;
+		color: #fff;
+		font-size: 1.2em;
+		float: left;
+		padding: 5px;
+		text-shadow: #000 0 0 4px;
+		text-align: left;
+		width: 100%;
 	}
 
 	#options, #branches{
-	  background-color: #f3f8f8;
-	  float: left;
-	  text-shadow: #aaa 0 0 1px;
-	  width: 100%;
+		background-color: #f3f8f8;
+		float: left;
+		text-shadow: #aaa 0 0 1px;
+		width: 100%;
 	}
 
 	#kick_him {
-	  border: 1px solid #a6cace;
-	  border-radius: 3px;
-	  padding: 0.3em;
+		border: 1px solid #a6cace;
+		border-radius: 3px;
+		padding: 0.3em;
 	}
 
 	#tq {
-	  text-align: center;
+		text-align: center;
 	}
 
 	#tq td {
-	  padding:3px;
-	  text-align:center;
+		padding:3px;
+		text-align:center;
 	}
 	
 	.list{
-	  border-bottom-color: #aaa;
-	  border-bottom-style: dotted;
-	  border-bottom-width: 1px;
-	  border-top-color:#f3f8f8;
-	  border-top-style: solid;
-	  border-top-width: 1px;
-	  padding: 5px;
+		border-bottom-color: #aaa;
+		border-bottom-style: dotted;
+		border-bottom-width: 1px;
+		border-top-color:#f3f8f8;
+		border-top-style: solid;
+		border-top-width: 1px;
+		padding: 5px;
 	}
 	
 	.branches, .options{
-	  margin-right: 10px;
+		margin-right: 10px;
 	}
 	</style>
 	<script type="text/javascript">
 //
 	function addToStorage(){
-	  var uy = document.getElementById('kick_him').value;
+		var uy = document.getElementById('kick_him').value;
 
-	  if ( !in_array(uy,(lst||' ').split('=#####=')) && uy!="" ){
+		if ( !in_array(uy,(lst||' ').split('=#####=')) && uy!="" ){
 
 		var t =(lst=="" ? '':lst+'=#####=')+uy;
 			lst = t;
@@ -107,7 +107,7 @@
 
 			alert('Эта чучундра уже в списке!');
 			
-		  }
+			}
 	}
 
 var lst = "";
@@ -130,77 +130,77 @@ var z = "";
 
 //Вывод опций
 	function showOptions (option, description) {
-	  var opt = localStorage[option];
-	  if (!opt || opt == "false") {
-		$("#options").append('<label><p class="list"><input class="options" type="checkbox" name='+option+' />'+description+"</p></label>");
-	  }
-	  else {
-		$("#options").append('<label><p class="list"><input class="options" type="checkbox" name='+option+' checked="checked" />'+description+"</p></label>");
-	  }
+		var opt = localStorage[option];
+		if (!opt || opt == "false") {
+			$("#options").append('<label><p class="list"><input class="options" type="checkbox" name='+option+' />'+description+"</p></label>");
+		}
+		else {
+			$("#options").append('<label><p class="list"><input class="options" type="checkbox" name='+option+' checked="checked" />'+description+"</p></label>");
+		}
 	};
 
 //Обработка чекбоксов
 	function setOption(){
-	  var checkBoxName = $(this).attr("name");
-	  if ($(this).is(":checked")) { 
-		localStorage[checkBoxName]=true;
-	  }
-	  else {
-		localStorage[checkBoxName]=false;
-	  }
+		var checkBoxName = $(this).attr("name");
+		if ($(this).is(":checked")) { 
+			localStorage[checkBoxName]=true;
+		}
+		else {
+			localStorage[checkBoxName]=false;
+		}
 	};
 
 //Вывод форумов
 	function showBranches (branches) {
-	  if (localStorage["branches"] == undefined || localStorage["branches"] ==null) {
-		for(var key in branches) {
-		  $("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" />'+branches[key]+"</p></label>");
+		if (localStorage["branches"] == undefined || localStorage["branches"] ==null) {
+			for(var key in branches) {
+				$("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" />'+branches[key]+"</p></label>");
+			}
 		}
-	  }
-	  else {
-		var brn = localStorage["branches"].split('###');
-		for(var key in branches) {
-		  if (in_array(branches[key], brn)) {
-			$("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" checked="checked" />'+branches[key]+"</p></label>");
-		  }
-		  else {
-			$("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" />'+branches[key]+"</p></label>");		   
-		  }
+		else {
+			var brn = localStorage["branches"].split('###');
+			for(var key in branches) {
+				if (in_array(branches[key], brn)) {
+					$("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" checked="checked" />'+branches[key]+"</p></label>");
+				}
+				else {
+					$("#options").append('<label><p class="list"><input class="branches" type="checkbox" name="branch'+key+'" title="'+branches[key]+'" />'+branches[key]+"</p></label>");			 
+				}
+			}
 		}
-	  }
 	};
 
 //Обработка форумов
 	function setBranches(){
-	  if (localStorage["branches"] != undefined) {
-		var brn = localStorage["branches"].split('###');
-	  }
-	  var checkBoxName = $(this).attr("title");
-	  if ($(this).is(":checked")) {
-		if (localStorage["branches"] == undefined || localStorage["branches"] ==null) {
-		  localStorage["branches"]=checkBoxName;
+		if (localStorage["branches"] != undefined) {
+			var brn = localStorage["branches"].split('###');
 		}
+		var checkBoxName = $(this).attr("title");
+		if ($(this).is(":checked")) {
+			if (localStorage["branches"] == undefined || localStorage["branches"] ==null) {
+				localStorage["branches"]=checkBoxName;
+			}
 		else if (!in_array(checkBoxName, brn)) {
-		  brn.push(checkBoxName);
+						brn.push(checkBoxName);
+				}
 		}
-	  }
-	  else {
-		brn = jQuery.grep(brn, function(value) 
-		  {return value != checkBoxName;}
-		);
-	  }
-	  localStorage["branches"]=brn.join('###');
+		else {
+			brn = jQuery.grep(brn, function(value) 
+				{return value != checkBoxName;}
+			);
+		}
+		localStorage["branches"]=brn.join('###');
 	};
 
 	
 	$(document).ready(function(){
-	  var branches = ["общие","костромские","областные","деловые","творческие","хобби","околокомпьютерные","тестовые","Информация о форуме"];
-	  showOptions("headerButtons","тупые кнопки в шапке");
-	  showOptions("goToForm","хрень для перехода");
-	  showOptions("footer","футер");
-	  showBranches(branches);
-	  $(".options").click(setOption);
-	  $(".branches").click(setBranches);
+		var branches = ["общие","костромские","областные","деловые","творческие","хобби","околокомпьютерные","тестовые","Информация о форуме"];
+		showOptions("headerButtons","тупые кнопки в шапке");
+		showOptions("goToForm","хрень для перехода");
+		showOptions("footer","футер");
+		showBranches(branches);
+		$(".options").click(setOption);
+		$(".branches").click(setBranches);
 	});		
 	
 	chrome.extension.sendRequest({localstorage: "kicked"}, function(response){ 
@@ -211,22 +211,22 @@ var z = "";
 	});
 
 	</script>
-  </head>
-  <body>
-	<div class="description">Отключить:</div>
-	<div id="options"></div>
-	<div class="description">Репозиторий амёб:</div>
-	<div id="kicked">
-	  <table id="tq">
-		<tr>
-		  <td>
-			<input type="text" id="kick_him" onkeypress="if(event.keyCode==13)addToStorage()" />
-		  </td>
-		  <td>
-			<button onclick="addToStorage()">Амёба, блеать!</button>
-		  </td>
-		</tr>
-	  </table>
-	</div>
-  </body>
+	</head>
+	<body>
+		<div class="description">Отключить:</div>
+		<div id="options"></div>
+		<div class="description">Репозиторий амёб:</div>
+		<div id="kicked">
+			<table id="tq">
+				<tr>
+					<td>
+						<input type="text" id="kick_him" onkeypress="if(event.keyCode==13)addToStorage()" />
+					</td>
+					<td>
+						<button onclick="addToStorage()">Амёба, блеать!</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
 </html>

@@ -7,22 +7,24 @@
 
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
-	  function responseOptions (option) {
-	    var response = new Object();
-        response[option] = localStorage[option];
-        if (request.localstorage == option) {
-          sendResponse(response);
-        }
-        else
-          sendResponse({}); 
-      };
+
+		function responseOptions (option) {
+			var response = new Object();
+			response[option] = localStorage[option];
+			if (request.localstorage == option) {
+				sendResponse(response);
+			}
+			else
+				sendResponse({}); 
+		};
+		
 		if (request.localstorage == "kicked") {
 			sendResponse({kicked: (localStorage.kicked||"")});
 		}
 		else if (request.localstorage == "set") {
 					localStorage['kicked']=request.settedValue; 
 					sendResponse({status:'ok'}); 
-		}
-		else responseOptions(request.localstorage);
+				}
+				else responseOptions(request.localstorage);
 });
 </script>
