@@ -88,7 +88,7 @@
 		padding: 5px;
 	}
 	
-	.branches, .options{
+	.branches, .options, .forumlink{
 		margin-right: 10px;
 	}
 	</style>
@@ -194,7 +194,7 @@ var z = "";
 
 	
 	$(document).ready(function(){
-		var branches = ["общие","костромские","областные","деловые","творческие","хобби","околокомпьютерные","тестовые","Информация о форуме"];
+		var branches = ["общие","костромские","областные","деловые","творческие","хобби","околокомпьютерные","тестовые","информация о форуме"];
 		showOptions("headerButtons","тупые кнопки в шапке");
 		showOptions("goToForm","хрень для перехода");
 		showOptions("footer","футер");
@@ -213,6 +213,7 @@ var z = "";
 	</script>
 	</head>
 	<body>
+		<div class="forumlink">Перейти на <a href="http://jedi.net.ru/" title="Форум Костромских Джедаев">форум</a></div>
 		<div class="description">Отключить:</div>
 		<div id="options"></div>
 		<div class="description">Репозиторий амёб:</div>
