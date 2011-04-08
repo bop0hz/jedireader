@@ -18,7 +18,7 @@ $(document).ready(function(){
 	$("textarea[name='req_message']").bind("keypress",function(event){
 	
 		var ev = event||window.event;
-		var kk = ev.keyCode;12133
+		var kk = ev.keyCode;
 		var ctrl = ev.ctrlKey;
 		
 		if ((kk==10||kk==13) && ctrl) 
