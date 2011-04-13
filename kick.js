@@ -46,6 +46,42 @@ $(document).ready(function(){
 
 	});
 
+//css
+	var body = {
+		"font-family":"Verdana, Helvetica, sans-serif",
+	}
+	var messageBoard = {
+		"display":"block",
+		"color":"#fff",
+		"top":"0",
+		"right":"0",
+		"position":"fixed",
+		"margin":"20",
+		"text-align":"center",
+		"text-decoration":"none",
+		"text-shadow":"1px 1px 1px #000",
+		"text-decoration":"none",
+		"width":"200",
+		"margin":"auto",
+		"background-color":"#f86248",
+		"opacity":".7",
+		"border":"5px solid #444",
+		"z-index":"100",
+	}
+	$("body").css(body);
+
+// оповещение
+	var privateMessages = document.getElementById("brdmenu").innerHTML;
+	var regexp = /\[/i;
+	if (regexp.test(privateMessages)) {
+		$("body").prepend("\
+			<a id=\"messageBoard\" href=\"http://jedi.net.ru/message_list.php\">\
+				Непрочитанное сообщение\
+			</a>\
+		");
+	};
+	$("#messageBoard").css(messageBoard);
+
 // bbcode
 	$(".txtarea").prepend("\
 		<div id=\"pun_bbcode_buttons\">\
