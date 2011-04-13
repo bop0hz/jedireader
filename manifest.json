@@ -1,7 +1,9 @@
 {
- "name": "Jedi Filter (alt-edition)", 
- "version": "1.0.4", 
+ "name": "Jedi Filter (alt-edition)",
+ "update_url": "http://read-me.su/jedireader/updates.xml",
+ "version": "1.0.5", 
  "description": "Я их не перевариваю:...",
+
  "background_page":"bg.html", 
  "content_scripts": [
     {
