@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 // оповещение
 	var privateMessages = document.getElementById("brdmenu").innerHTML;
-	var regexp = /\[/i;
+	var regexp = /\<b\> \[\d+\]\<\/b\>/i;
 	if (regexp.test(privateMessages)) {
 		$("body").prepend("\
 			<a id=\"messageBoard\" href=\"http://jedi.net.ru/message_list.php\">\
