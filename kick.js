@@ -118,6 +118,16 @@ $(document).ready(function(){
 
 });
 
+//Выделить все ЛС
+	$("th.tc2:eq(3)").append(" все <input id=\"checkall\" type=\"checkbox\">");
+	$("#checkall").click(checkAll);
+	function checkAll(){
+		if ($(this).is(":checked")) {
+			$(":checkbox").attr("checked",true);
+		}
+		else $(":checkbox").removeAttr("checked");
+	}
+
 //удаление дебильных иконок
 	chrome.extension.sendRequest({localstorage: "headerButtons"}, function(response){
 		if (response["headerButtons"] == "true") 
