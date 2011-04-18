@@ -119,7 +119,7 @@ $(document).ready(function(){
 });
 
 //Выделить все ЛС
-	$("th.tc2:eq(3)").append(" все <input id=\"checkall\" type=\"checkbox\">");
+	$("th.tc2:contains('Удалить')").append(" все <input id=\"checkall\" type=\"checkbox\">");
 	$("#checkall").click(checkAll);
 	function checkAll(){
 		if ($(this).is(":checked")) {
@@ -131,19 +131,21 @@ $(document).ready(function(){
 //удаление дебильных иконок
 	chrome.extension.sendRequest({localstorage: "headerButtons"}, function(response){
 		if (response["headerButtons"] == "true") 
-		$("#brdmenu ~ .inbox:first").remove();
+			$("#brdmenu ~ .inbox:first").remove();
 	});
 
 //удаление блока Перехода
 	chrome.extension.sendRequest({localstorage: "goToForm"}, function(response){
 		if (response["goToForm"] == "true") 
-		document.getElementById("brdfooter").style.display ="none";
+			$(".linksb + #brdfooter").remove();
 	});	
 
 //удаление футера
 	chrome.extension.sendRequest({localstorage: "footer"}, function(response){
 		if (response["footer"] == "true") {
 			$("#punindex, #punviewforum, #punviewtopic").children(".box").remove();
+			$("#brdfooter + .box").remove();
+			$(".linksb + .box").remove();
 		};
 	});
 	
