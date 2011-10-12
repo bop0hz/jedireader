@@ -28,7 +28,7 @@ $(document).ready(function(){
 	
 	$(".postmsg p").each(function(){
 	
-		$(this).html($(this).html().replace(/(\{\#jedicut\})(.+)(\<\/p\>)/gim,'<a href="javascript:void(0)" onclick="var cut =  this.parentNode.getElementsByClassName(\'jedicut\')[0]; if(cut.offsetWidth>0)cut.style.display=\'none\'; else cut.style.display=\'block\'">читать/не читать далее</a><div class="jedicut">$1</div>'));
+		$(this).html($(this).html().replace(/(\{\#jedicut\})(.+)$/gim,'<a href="javascript:void(0)" onclick="var cut =  this.parentNode.getElementsByClassName(\'jedicut\')[0]; if(cut.offsetWidth>0)cut.style.display=\'none\'; else cut.style.display=\'block\'">читать/не читать далее</a><div class="jedicut">$2</div>'));
 
 	
 	});
