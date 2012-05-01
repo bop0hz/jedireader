@@ -1,22 +1,21 @@
 {
  "name": "Jedi Filter (alt-edition)",
  "update_url": "http://jedinet.ru/jedireader/updates.xml",
- "version": "1.0.6.4", 
+ "version": "1.0.7.0", 
  "description": "Я их не перевариваю:...",
 
  "background_page":"bg.html", 
  "content_scripts": [
     {
-      "matches": ["http://jediru.net/*","http://www.jediru.net/*","http://jedi.net.ru/*","http://www.jedi.net.ru/*"],
+      "matches": ["http://jediru.net/*","http://www.jediru.net/*"],
       "js": ["j.js","kick.js"]
     }
   ],
  "permissions": [
-    "tabs", 
+    "tabs",
+    "notifications",
 	"http://jediru.net/*",
-	"http://www.jediru.net/*",
-    "http://jedi.net.ru/*",
-    "http://www.jedi.net.ru/*"  
+	"http://www.jediru.net/*"
  ],
 
  "browser_action": { 

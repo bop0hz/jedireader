@@ -1,9 +1,47 @@
-<!-- 
+<!--
 /*************************************************
 2011 Sergey Lubenin web_lab@mail.ru
 *************************************************/
- -->
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
+	var url = 'http://jediru.net/profile.php';
+	var messagesRegex = /\<b\> \[(\d+)\]\<\/b\>/gi;
+	var notification = webkitNotifications.createNotification(
+		'img/yoda.jpg',
+		'Совет джедаев:',
+		'Сообщение личное на джедаях форуме у вас'
+	);
+	var update = function(){
+
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if ( xhr.readyState == 4 ){
+				if ( xhr.status == 200 ) {
+					messageCount = xhr.responseText.match(messagesRegex);
+					if (messageCount == null ) {
+						chrome.browserAction.setBadgeText({ text:""});
+					}
+					else {
+							if (localStorage["notification"] == "true") {
+								notification.show();
+							};
+
+						chrome.browserAction.setBadgeText({ text: String(messageCount).replace(messagesRegex, '$1') });
+					}
+				}
+			}
+		}
+
+		xhr.open("GET", url, true);
+		xhr.send();
+	};
+
+	update();
+	setInterval(update, 1000*60);
 
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
@@ -28,3 +66,4 @@ chrome.extension.onRequest.addListener(
 				else responseOptions(request.localstorage);
 });
 </script>
+</html>
