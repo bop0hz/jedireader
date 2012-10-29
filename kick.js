@@ -27,13 +27,13 @@ $(document).ready(function(){
 	}); 
 
 	$(".postsignature").each(function(){
-//[url=http://jedinet.ru/][img]http://jedinet.ru/img/jedi.net.ru-chrome-plugin-4.png[/img][/url]
 		$(this).html($(this).html().replace(/(\{\#jedicut\})(.+)$/gim,'<a href="javascript:void(0)" onclick="var cut =  this.parentNode.getElementsByClassName(\'jedicut\')[0]; if(cut.offsetWidth>0)cut.style.display=\'none\'; else cut.style.display=\'block\'">читать/не читать далее</a><div class="jedicut" style="display:none">$2</div>'));
 		$(this).html($(this).html().replace(/\[img\](http:\/\/([^(\[| |$)]+)\.(jpg|png|gif))\[\/img\]/gi,"<img src=\"$1\">"));
-
-
 	});
 
+	$(".postmsg p").each(function(){
+		$(this).html($(this).html().replace(/\[img\](http:\/\/([^(\[| |$)]+)\.(jpg|png|gif))\[\/img\]/gi,"<img src=\"$1\">"));
+	});
 
 	$(".postmsg a").each(function(){
 
