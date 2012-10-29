@@ -4,8 +4,8 @@
 var current_pretendent = "";
 var vhosts = [
 [
-	/((http\:\/\/)?(www\.)?youtube\.(com|ru)\/watch\?v\=)([a-zA-Z0-9\-]+)(\&.*)?$/i , 
-	"<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/$5\" frameborder=\"0\" allowfullscreen></iframe>"
+	/((http\:\/\/)?(www\.)?youtube\.com\/watch\?v\=)([a-zA-Z0-9\-_]+)(\&.*)?$/i , 
+	"<iframe title=\"YouTube video player\" width=\"425\" height=\"349\" src=\"http://www.youtube.com/embed/$4\" frameborder=\"0\" allowfullscreen></iframe>"
 ],
 [
 	/((http\:\/\/)?(www\.)?rutube\.ru\/tracks\/\d+\.html\?v\=)([a-zA-Z0-9\-]+)(\&.*)?$/i , 
@@ -26,10 +26,10 @@ $(document).ready(function(){
 
 	}); 
 
-	$(".postmsg p").each(function(){
-
+	$(".postsignature").each(function(){
+//[url=http://jedinet.ru/][img]http://jedinet.ru/img/jedi.net.ru-chrome-plugin-4.png[/img][/url]
 		$(this).html($(this).html().replace(/(\{\#jedicut\})(.+)$/gim,'<a href="javascript:void(0)" onclick="var cut =  this.parentNode.getElementsByClassName(\'jedicut\')[0]; if(cut.offsetWidth>0)cut.style.display=\'none\'; else cut.style.display=\'block\'">читать/не читать далее</a><div class="jedicut" style="display:none">$2</div>'));
-		$(this).html($(this).html().replace(/(http:\/\/(.*)\.(jpg|png|gif))/i,"<img src=\"$1\">"));
+		$(this).html($(this).html().replace(/\[img\](http:\/\/([^(\[| |$)]+)\.(jpg|png|gif))\[\/img\]/gi,"<img src=\"$1\">"));
 
 
 	});
